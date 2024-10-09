@@ -1,4 +1,84 @@
 extends ../../layouts/default.pug
-
+include ../../mixins/alert.pug
 block main
-    h1 Trang tổng quan
+    +alert-success(5000)
+    +alert-error(5000)
+    h1.text-center.mt-4.text-primary Trang tổng quan quản trị
+    .container
+        .row.my-5
+            .col-md-4
+                .card.shadow-sm.mb-4
+                    .card-header.bg-info.text-white.text-center
+                        h4 Tổng số người dùng
+                    .card-body.text-center
+                        h2.text-primary 1250
+                        p Hiện tại hệ thống đang có 1250 người dùng đăng ký.
+
+            .col-md-4
+                .card.shadow-sm.mb-4
+                    .card-header.bg-success.text-white.text-center
+                        h4 Tổng số đơn hàng
+                    .card-body.text-center
+                        h2.text-success 830
+                        p Đã xử lý 830 đơn hàng trong tháng này.
+
+            .col-md-4
+                .card.shadow-sm.mb-4
+                    .card-header.bg-warning.text-white.text-center
+                        h4 Doanh thu tháng
+                    .card-body.text-center
+                        h2.text-warning $75,000
+                        p Doanh thu ước tính trong tháng hiện tại.
+
+        .row.my-5
+            .col-md-6
+                .card.shadow-sm
+                    .card-header.bg-primary.text-white.text-center
+                        h4 Hoạt động gần đây
+                    .card-body
+                        ul.list-group
+                            li.list-group-item
+                                b Nguyễn Văn A
+                                |  đã tạo tài khoản mới.
+                            li.list-group-item
+                                b Đơn hàng #2034
+                                |  đã được xác nhận và vận chuyển.
+                            li.list-group-item
+                                b Lê Thị B
+                                |  đã cập nhật thông tin cá nhân.
+                            li.list-group-item
+                                b Đơn hàng #2023
+                                |  đã bị hủy.
+                            li.list-group-item.text-center
+                                a(href="#") Xem tất cả
+
+            .col-md-6
+                .card.shadow-sm
+                    .card-header.bg-danger.text-white.text-center
+                        h4 Thông báo hệ thống
+                    .card-body
+                        ul.list-group
+                            li.list-group-item.text-danger
+                                b Cảnh báo
+                                |  Máy chủ gặp sự cố và đang được kiểm tra.
+                            li.list-group-item.text-warning
+                                b Lưu ý
+                                |  Phiên bản mới của hệ thống sẽ được cập nhật vào tuần tới.
+                            li.list-group-item.text-info
+                                b Thông tin
+                                |  Sẽ có buổi họp trực tuyến vào ngày 15/09 để bàn về chiến lược mới.
+                            li.list-group-item.text-success
+                                b Thành công
+                                |  Hệ thống sao lưu đã hoàn thành.
+
+        .row.my-5
+            .col-md-12
+                .card.shadow-sm
+                    .card-header.bg-secondary.text-white.text-center
+                        h4 Biểu đồ doanh thu
+                    .card-body
+                        img(src="https://via.placeholder.com/800x400?text=Chart+Placeholder" alt="Biểu đồ doanh thu" class="img-fluid")
+
+        .row.my-5.text-center
+            .col-md-4.offset-md-4
+                a.btn.btn-outline-primary.btn-lg(href="#") Xem báo cáo chi tiết

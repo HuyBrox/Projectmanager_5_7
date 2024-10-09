@@ -4,4 +4,16 @@ header.header
             .inner-logo
                 a(href='/admin/dashboard') ADMIN
         .col-9
+            .row
+                .col-6
+                    .search
+                        .input-group
+                            input.form-control(type='text' placeholder='Search')
+                            span.input-group-text
+                                i.bi.bi-search
+                .col-6
+                    .user.d-flex.justify-content-end(style='gap: 7px')
+                        a.btn.btn-outline-light.nav-link(href='/admin/profile') Profile
+                        a.btn.btn-outline-light.nav-link(href='/admin/settings') Settings
+                        a.btn.btn-outline-danger.nav-link(href='/admin/auth/logout') Logout
 

@@ -10,19 +10,25 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "cloudinary": "^2.2.0",
     "cookie-parser": "^1.4.6",
+    "date-fns": "^4.1.0",
     "express": "^4.19.2",
     "express-flash": "^0.0.2",
     "express-session": "^1.18.0",
+    "jsonwebtoken": "^9.0.2",
     "method-override": "^3.0.0",
     "mongodb": "^6.7.0",
     "mongoose": "^8.3.2",
     "mongoose-slug-updater": "^3.3.0",
     "multer": "^1.4.5-lts.1",
     "pug": "^3.0.2",
-    "streamifier": "^0.1.1"
+    "sass": "^1.79.4",
+    "streamifier": "^0.1.1",
+    "tinymce": "^7.2.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.0"

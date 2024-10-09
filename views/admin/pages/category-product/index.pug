@@ -1,0 +1,41 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/table-tree.pug
+include ../../mixins/err403.pug
+
+block main
+    +alert-error(5000)
+    +alert-success(5000)
+    if(role.permissions.includes('product-category_view'))
+        .container
+            if(role.permissions.includes('product-category_create'))
+                .card.mb-3.shadow-sm
+                    h4.card-header.text-info.bg-light Tác vụ
+                    .card-body
+                        .row.align-items-center
+                            .col-lg-6.col-md-12.mb-3.pt-2
+
+                                a.btn.btn-outline-success(href=`${prefixAdmin}/category-product/create`)
+                                i.fa.fa-plus-circle
+                                |  + Thêm mới
+                            .col-lg-6.col-md-12.text-end
+            .card.mb-3.shadow-sm
+                h4.card-header.text-info.bg-light Danh sách danh mục sản phẩm
+                .card-body
+                    table.table.table-bordered.table-hover
+                        thead
+                            tr
+                                th STT
+                                th Hình ảnh
+                                th Tiêu đề
+                                th Tiêu đề cha
+                                th Vị trí
+                                th Trạng thái
+                                th Hành động
+                        tbody
+                            +table-tree(newRecord)
+    else
+        +error403('Bạn không được phép truy cập trang này', 'javascript:history.back()')
+
+    //- phân trang (nếu có)
+    //- +pagination(pageObject)

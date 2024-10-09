@@ -1,0 +1,92 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/select-tree.pug
+include ../../mixins/err403.pug
+//-thêm danh mục sản phẩm
+block main
+    if(role.permissions.includes('product-category_create'))
+        +alert-error(5000)
+        +alert-success(5000)
+
+        h1 Thêm danh mục sản phẩm
+        form(
+            action=`${prefixAdmin}/category-product/create`
+            method="POST"
+            id="form-create-product"
+            enctype="multipart/form-data"
+        )
+            .form-group
+                label(for="title") Tiêu đề danh mục
+                input#title.form-control(type="text" name="title" placeholder="Nhập tiêu đề" required)
+            select(
+                name="parent_id"
+                id="parent_id"
+                class="form-control"
+            )
+                option(
+                    value=""
+                ) -- Chọn danh mục cha --
+                if(newRecord)
+                    +select-tree(newRecord)
+
+            .form-group(
+                upload-img
+            )
+                label(for="thumbnail") Hình ảnh
+                input(
+                    type="file"
+                    name="thumbnail"
+                    id="thumbnail"
+                    class="form-control-file"
+                    value=""
+                    accept="image/*"
+                    input-img
+                )
+                .image-preview-container(style="position: relative; max-width: 200px; width: 200px; display: none;  margin-top: 10px;")
+                    img(
+                        style="width: 100%; height: 100%; object-fit: cover;"
+                        src=""
+                        preview-img
+                    )
+                    span(
+                        close-img
+                        class="btn btn-close-preview-img"
+                        style="display: none; position: absolute; top: 10px; right: 10px; cursor: pointer; background: white; padding: 2px; border-radius: 50%;"
+                    ) X
+
+            .form-group
+                label(for="description") Mô tả
+                textarea#description.form-control(name="description" rows="3" placeholder="Nhập mô tả" class= "tinymce")
+
+            .form-group
+                label(for="position") Vị trí
+                input(
+                    type="number"
+                    name="position"
+                    id="position"
+                    class="form-control"
+                    placeholder="Tự động tăng"
+                    value=""
+                )
+
+            .form-group
+                label.mr-3(for="status") Trạng thái
+                label.mr-3
+                    input(
+                        type="radio"
+                        name="status"
+                        value="Active"
+                        checked
+                    ).mr-2
+                    | Hoạt động
+                label
+                    input(
+                        type="radio"
+                        name="status"
+                        value="Inactive"
+                    ).mr-2
+                    | Dừng hoạt động
+
+            button.btn.btn-primary(type="submit") Thêm danh mục
+    else
+        +error403('Bạn không được phép truy cập trang này', 'javascript:history.back()')

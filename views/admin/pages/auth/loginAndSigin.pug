@@ -1,0 +1,76 @@
+include ../../mixins/alert.pug
+doctype html
+head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    script(src='https://kit.fontawesome.com/64d58efce2.js' crossorigin='anonymous')
+    link(rel='stylesheet' href='/admin/Css/styleLogin.css')
+    link(rel="stylesheet" href="/admin/Css/style.css")
+    title #{pageTitle}
+    .main
+        block main
+            +alert-success(5000)
+            +alert-error(5000)
+            .container
+                .forms-container
+                    .signin-signup
+                        form.sign-in-form(action=`${prefixAdmin}/auth/login` method='POST')
+                            h2.title Sign in
+                            .input-field
+                                i.fas.fa-user
+                                input(name='email' type='email' placeholder='Email')
+                            .input-field
+                                i.fas.fa-lock
+                                input(name='password' type='password' placeholder='Password')
+                            input.btn.solid(type='submit' value='Login')
+                            p.social-text Or Sign in with social platforms
+                            .social-media
+                                a.social-icon(href='#')
+                                    i.fab.fa-facebook-f
+                                a.social-icon(href='#')
+                                    i.fab.fa-twitter
+                                a.social-icon(href='#')
+                                    i.fab.fa-google
+                                a.social-icon(href='#')
+                                    i.fab.fa-linkedin-in
+                        form.sign-up-form(action='#')
+                            h2.title Sign up
+                            .input-field
+                                i.fas.fa-user
+                                input(type='text' placeholder='Username')
+                            .input-field
+                                i.fas.fa-envelope
+                                input(type='email' placeholder='Email')
+                            .input-field
+                                i.fas.fa-lock
+                                input(type='password' placeholder='Password')
+                            input.btn(type='submit' value='Sign up')
+                            p.social-text Or Sign up with social platforms
+                            .social-media
+                                a.social-icon(href='#')
+                                    i.fab.fa-facebook-f
+                                a.social-icon(href='#')
+                                    i.fab.fa-twitter
+                                a.social-icon(href='#')
+                                    i.fab.fa-google
+                                a.social-icon(href='#')
+                                    i.fab.fa-linkedin-in
+                .panels-container
+                    .panel.left-panel
+                        .content
+                            h3 New here ?
+                            p
+                                | Lorem ipsum, dolor sit amet consectetur adipisicing elit. Debitis, ex ratione. Aliquid!
+                            button#sign-up-btn.btn.transparent
+                                | Sign up
+                        img.image(src='' alt='')
+                    .panel.right-panel
+                        .content
+                            h3 One of us ?
+                            p
+                                | Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum laboriosam ad deleniti.
+                            button#sign-in-btn.btn.transparent
+                                | Sign in
+                        img.image(src='' alt='')
+script(src="/admin/js/login.js" type="module")
+script(src="/admin/js/script.js" type="module")

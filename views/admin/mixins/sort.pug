@@ -1,0 +1,20 @@
+mixin sort()
+    .col-5.d-flex.mb-4(
+        sort
+    )
+    select.ml-30(
+        name="sort"
+        class="form-control"
+        sort-select
+        style="max-width: 220px; width: 100%;"
+    )
+        option(value="default" ) -- option --
+        option(value="price-asc" ) Giá tăng dần
+        option(value="price-desc" ) Giá giảm dần
+        option(value="position-asc" ) Vị trí tăng dần
+        option(value="position-desc" ) Vị trí giảm dần
+        option(value="title-asc" ) Tiêu đề A-Z
+        option(value="title-desc" ) Tiêu đề Z-A
+    button.btn.btn-primary.ml-2(
+        sort-btn
+    ) Sắp xếp

@@ -1,0 +1,59 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/err403.pug
+block main
+    if(role.permissions.includes('role_view'))
+        +alert-error(5000)
+        +alert-success(5000)
+
+        .container
+            .card.mb-3.shadow-sm
+                h4.card-header.text-info.bg-light Tác vụ
+                .card-body
+                    .row.align-items-center
+                        if(role.permissions.includes('role_create'))
+                            .col-lg-6.col-md-12.mb-3.pt-2
+                                a.btn.btn-outline-success(
+                                    href=`${prefixAdmin}/roles/create`
+                                )
+                                    i.fa.fa-plus-circle
+                                    |  + Thêm mới
+                        .col-lg-6.col-md-12.text-end
+
+                    .row.mt-3
+                        .col-12
+            .card.mb-3.shadow-sm
+                h4.card-header.text-info.bg-light Các nhóm quyền
+                .card-body
+                    table.table.table-bordered.table-hover
+                        thead
+                            tr
+                                th STT
+                                th Nhóm quyền
+                                th Mô tả
+                                if(role.permissions.includes('role_edit' && 'role_delete'))
+                                    th.text-center Tác vụ
+                        tbody
+                            if roles.length > 0
+                                each item, index in roles
+                                    tr
+                                        td #{index + 1}
+                                        td #{item.title}
+                                        td #{item.description}
+                                        if(role.permissions.includes('role_edit' && 'role_delete'))
+                                            td.text-center
+                                                if(role.permissions.includes('role_edit'))
+                                                    a.btn.btn-outline-info(href=`${prefixAdmin}/roles/edit/${item._id}`)
+                                                        i.fa.fa-edit
+                                                        |  Sửa
+                                                form(action=`${prefixAdmin}/roles/delete/${item._id}?_method=DELETE`, method="POST" class="d-inline")
+                                                    if(role.permissions.includes('role_delete'))
+                                                        button.btn.btn-outline-danger.ml-1(type="submit")
+                                                            i.fa.fa-trash-alt
+                                                            |  Xóa
+                            else
+                                tr
+                                    td.text-center(colspan="4")
+                                        | Chưa có quyền được tạo!
+    else
+        +error403('Bạn không được phép truy cập trang này', 'javascript:history.back()')

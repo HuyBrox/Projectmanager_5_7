@@ -1,0 +1,17 @@
+mixin sub-menu(items, path)
+    //- Kiểm tra xem items có tồn tại và là một mảng không
+    if Array.isArray(items) && items.length > 0
+        ul.menus
+            each item in items
+                //- Kiểm tra xem item có thuộc tính children và nó có phải là một mảng không
+                if item.children && Array.isArray(item.children) && item.children.length > 0
+                    li.has-submenu
+                        a.prett(href=`${path}/${item.slug}`) #{item.title}
+                        +sub-menu(item.children, path)
+                else
+                    li
+                        a.prett(href=`${path}/${item.slug}`) #{item.title}
+    else
+        //- Nếu items không hợp lệ, có thể hiển thị một thông báo hoặc không làm gì cả
+        ul.menus
+            li Không có mục nào

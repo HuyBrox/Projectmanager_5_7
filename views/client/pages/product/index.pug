@@ -1,6 +1,7 @@
 extends ../../layout/default.pug
 include ../../mixins/box-head.pug
-//- th pug này phải viết cho đúng chứ k là lỗi ngay
+include ../../mixins/productCard.pug
+
 block main
     .container.my-3
         .row
@@ -9,14 +10,17 @@ block main
 
         .row
             each item in products
-                .col-4.mb-3
-                    .product-item
-                        .inner-image
-                            img(src=item.thumbnail alt=item.title width="100%" height="100%")
-                        .inner-content
-                            h3.inner-title
-                                a(href=`/product/${item.slug}`) #{item.title}
-                            .inner-price-new #{(item.price-(item.price*(item.discountPercentage/100))).toFixed(2)} vnđ
-                            .inner-price-old #{item.price} vnđ
-                            .inner-discount -#{item.discountPercentage}%
-
+                .col-xl-4.col-md-6.col-sm-12.mb-3
+                    +productCard(
+                        image1=item.thumbnail,
+                        image2=item.thumbnail,
+                        name=item.title,
+                        price=(item.price - (item.price * (item.discountPercentage / 100))).toFixed(2) + ' vnđ',
+                        sale=(item.discountPercentage > 0 ? '-' + item.discountPercentage + '%' : ''),
+                        originalPrice=item.price + ' vnđ',
+                        colors=[
+                            { src: item.thumbnail[0], alt: 'Color 1', color: 'color1' },
+                            { src: item.thumbnail[1], alt: 'Color 2', color: 'color2' },
+                            { src: item.thumbnail[2], alt: 'Color 3', color: 'color3' }
+                        ]
+                    )

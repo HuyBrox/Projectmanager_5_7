@@ -44,6 +44,26 @@ if (btnPagination) {
         })
     })
 }
+const previous = document.querySelector('[previous]');
+const next = document.querySelector('[next]');
+if (previous) {
+    previous.addEventListener('click', function () {
+        let url = new URL(window.location.href);
+        const page = parseInt(url.searchParams.get('page'));
+        if (page > 1) {
+            url.searchParams.set('page', page - 1);
+            window.location.href = url.href;
+        }
+    })
+}
+if (next) {
+    next.addEventListener('click', function () {
+        let url = new URL(window.location.href);
+        const page = parseInt(url.searchParams.get('page'));
+        url.searchParams.set('page', page + 1);
+        window.location.href = url.href;
+    })
+}
 //check box
 const checkBoxMulti = document.querySelector('[checkbox-multi]');
 if (checkBoxMulti) {
@@ -78,7 +98,7 @@ if (formChangeMulti) {
 
         const checkBoxMulti = document.querySelector('[checkbox-multi]');
         const inputChecked = checkBoxMulti.querySelectorAll("input[name='id']:checked");
-        const selectType = document.querySelector('select.form-control option:checked').value;
+        const selectType = document.querySelector('select.form-select-multi option:checked').value;
         const pathForm = formChangeMulti.getAttribute('path');
 
         if (inputChecked.length > 0 && selectType !== '') {
@@ -132,15 +152,20 @@ if (formChangeMulti) {
 //Show alert
 const showAlert = document.querySelector('[show-alert]');
 if (showAlert) {
-    const timeOut = showAlert.getAttribute('data-time');
+    const timeOut = parseInt(showAlert.getAttribute('data-time'), 10) || 5000;
     const closeAlert = showAlert.querySelector('.close-alert');
+
     setTimeout(() => {
         showAlert.classList.add('alert-hidden');
     }, timeOut);
-    closeAlert.addEventListener('click', () => {
-        showAlert.classList.add('alert-hidden');
-    })
+
+    if (closeAlert) {
+        closeAlert.addEventListener('click', () => {
+            showAlert.classList.add('alert-hidden');
+        });
+    }
 }
+
 //preview image
 // preview image
 const uploadImg = document.querySelector('[upload-img]');
@@ -159,9 +184,14 @@ if (uploadImg) {
             groupInputImg.style.display = 'block';
         }
     });
-    if (previewImg !== '') {
+
+    if (previewImg.src == '' && inputImg.value == '') {
+        previewImg.style.display = 'none';
+        btnClosePreview.style.display = 'none';
+        groupInputImg.style.display = 'block';
+    } else if (previewImg.src != '' || inputImg.value != '') {
         previewImg.style.display = 'block';
-        btnClosePreview.style.display = 'inline-block';
+        btnClosePreview.style.display = 'block';
         groupInputImg.style.display = 'block';
     }
     btnClosePreview.addEventListener('click', () => {
@@ -171,4 +201,34 @@ if (uploadImg) {
         inputImg.value = '';
     });
 }
-
+//sort:
+const sort = document.querySelector('[sort]');
+if (sort) {
+    const sortSelect = document.querySelector('[sort-select]');
+    const sortBtn = document.querySelector('[sort-btn]');
+    sortSelect.addEventListener('change', (e) => {
+        const value = e.target.value;
+        const [sortKey, sortValue] = value.split('-');
+        sortBtn.addEventListener('click', () => {
+            if (value !== 'default' && value !== undefined) {
+                let url = new URL(window.location.href);
+                url.searchParams.set('sortKey', sortKey);
+                url.searchParams.set('sortValue', sortValue);
+                window.location.href = url.href;
+            } else if (value === 'default' || sortKey === 'default' || sortValue === undefined) {
+                let url = new URL(window.location.href);
+                url.searchParams.delete('sortKey');
+                url.searchParams.delete('sortValue');
+                window.location.href = url.href;
+            }
+        });
+    });
+}
+//
+const url = new URL(window.location.href);
+const sortKey = url.searchParams.get('sortKey');
+const sortValue = url.searchParams.get('sortValue');
+if (sortKey && sortValue) {
+    const value = `${sortKey}-${sortValue}`;
+    sort.querySelector(`option[value="${value}"]`).selected = true;
+}

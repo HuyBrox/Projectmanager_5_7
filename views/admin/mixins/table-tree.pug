@@ -1,0 +1,29 @@
+mixin table-tree(newRecord, level = 1)
+    - let index = 1  // Đặt chỉ mục bắt đầu từ 1
+    each category in newRecord
+        - const prefix = '-- '.repeat(level)
+        tr
+            td #{index++}
+            td
+                if category.thumbnail
+                    img(src=category.thumbnail, alt=category.title, width='100')
+                else
+                    span Không có hình ảnh
+            td #{prefix} #{category.title}
+            td #{category.parentTitle || 'Không có'}
+            td #{category.position}
+            td
+                if category.status == 'active'
+                    span.text-success Hoạt động
+                else
+                    span.text-danger Không hoạt động
+            td.text-center
+                if(role.permissions.includes('product-category_view'))
+                    a.btn.btn-info(href=`${prefixAdmin}/category-product/detail/${category.id}`) Chi tiết
+                if(role.permissions.includes('product-category_edit'))
+                    a.btn.btn-warning(href=`${prefixAdmin}/category-product/edit/${category.id}`) Sửa
+                if(role.permissions.includes('product-category_delete'))
+                    a.btn.btn-danger(href=`${prefixAdmin}/category-product/delete/${category.id}`) Xóa
+        //- Kiểm tra xem category có thuộc tính children và nó có phần tử không
+        if category.children && category.children.length > 0
+            +table-tree(category.children, level + 1)

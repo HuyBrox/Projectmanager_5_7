@@ -1,0 +1,11 @@
+mixin select-tree(categories, level = 1, parent_id )
+    each category in categories
+        - const prefix = '-- '.repeat(level)
+        option(
+            value=`${category._id}`
+            selected= (category._id == parent_id ? true : false)
+        ) #{prefix} #{category.title}
+
+        //- Kiểm tra xem category có thuộc tính children và nó có phần tử không
+        if category.children && category.children.length > 0
+            +select-tree(category.children, level + 1, parent_id)

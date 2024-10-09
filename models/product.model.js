@@ -5,6 +5,7 @@ mongoose.plugin(slug);
 //Tạo schema
 const productSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
+    category_product_id: String,
     title: String,
     description: String,
     price: Number,
@@ -13,6 +14,13 @@ const productSchema = new mongoose.Schema({
     thumbnail: String,
     status: String,
     position: Number,
+    createdBy: {
+        accountId: String,
+        createdAt: {
+            type: Date,
+            default: Date.now
+        }
+    },
     slug: {
         type: String,
         slug: "title",
@@ -22,7 +30,14 @@ const productSchema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
-    deletedAt: Date
+    deletedBy: {
+        accountId: String,
+        deletedAt: Date
+    },
+    updatedBy: [{
+        accountId: String,
+        updatedAt: Date
+    }]
 }, {
     timestamps: true
 });

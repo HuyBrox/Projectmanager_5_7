@@ -1,5 +1,8 @@
 const express = require('express');
+const path = require('path');
 const database = require('./config/database');
+
+
 //import method override
 
 const methodOverride = require('method-override');
@@ -41,6 +44,18 @@ app.use(cookieParser('huypassworkcookie'));
 app.use(session({ cookie: { maxAge: 60000 } }));
 app.use(flash());
 //==================================================
+//TinyMCE:
+app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
+//emd TinyMCE
+//date-fns
+const DateTime = require('./helpers/formatDayTime');
+app.locals.DateTime = DateTime;
+//end date-fns
+
+
+
+
+
 app.use(methodOverride('_method'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

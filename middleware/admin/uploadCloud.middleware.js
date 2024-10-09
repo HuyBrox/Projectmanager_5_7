@@ -1,12 +1,7 @@
 const cloudinary = require('cloudinary').v2;
 const streamifier = require('streamifier');
-// const storage = require('../../helpers/storageMulter');
-// const upload = multer({ storage: storage(multer) });
-//upload file
-const multer = require('multer');
-const upload = multer();
 
-//cấu hình cloudinary
+// Cấu hình cloudinary
 cloudinary.config({
     cloud_name: 'dtahyhx0h',
     api_key: '339816681182286',
@@ -16,26 +11,34 @@ cloudinary.config({
 module.exports.upload = (req, res, next) => {
     let streamUpload = (req) => {
         return new Promise((resolve, reject) => {
-            let stream = cloudinary.uploader.upload_stream((error, result) => {
-                if (result) {
-                    resolve(result);
-                } else {
-                    reject(error);
-                }
+            if (!req.file || !req.file.buffer) {
+                resolve(null); // Không có file để upload
+                return;
             }
-            );
+
+            let stream = cloudinary.uploader.upload_stream((error, result) => {
+                if (error) {
+                    reject(error);
+                } else {
+                    resolve(result);
+                }
+            });
             streamifier.createReadStream(req.file.buffer).pipe(stream);
         });
     };
+
     async function upload(req) {
-        let result = await streamUpload(req);
-        if (req.file) {
-            //req.file.fieldname cũng giống như truyền vào hàm 'thumbnail'
-            req.body[req.file.fieldname] = result.url;
-        } else {
-            req.body.thumbnail = 'https://img4.thuthuatphanmem.vn/uploads/2020/05/07/hinh-anh-cute-dep-nhat_093404024.jpg'; // Đặt giá trị mặc định nếu không có file
+        try {
+            let result = await streamUpload(req);
+            if (result) {
+                req.body[req.file.fieldname] = result.url;
+            }
+            next();
+        } catch (error) {
+            console.error('Lỗi khi tải lên file:', error);
+            res.redirect('back');
         }
-        next();
-    };
+    }
+
     upload(req);
-}
+};

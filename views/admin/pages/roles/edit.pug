@@ -1,0 +1,27 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/err403.pug
+block main
+    if(role.permissions.includes('role_edit'))
+        +alert-error(5000)
+        +alert-success(5000)
+        .container
+            .row.justify-content-center
+                .col-lg-12.col-md-10
+                    .card.shadow-sm
+                        h4.card-header.text-info.bg-light Sửa nhóm quyền
+                        .card-body
+                            form(action=`${prefixAdmin}/roles/edit/${role._id}?_method=PATCH` method="POST")
+                                .mb-3
+                                    label(for="title") Tiêu đề
+                                    input#title.form-control(type="text" name="title" placeholder="Nhập tiêu đề..." value=role.title required)
+
+                                .mb-3
+                                    label(for="description") Mô tả
+                                    textarea#description.form-control(name="description" placeholder="Nhập mô tả..." rows="4")= role.description
+
+                                .text-center
+                                    button.btn.btn-primary(type="submit") Cập nhật nhóm quyền
+                                    a.btn.btn-secondary.ms-2(href=`${prefixAdmin}/roles`) Hủy bỏ
+    else
+        +error403('Bạn không được phép truy cập trang này', 'javascript:history.back()')

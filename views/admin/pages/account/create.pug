@@ -1,0 +1,68 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+
+block main
+    +alert-success(5000)
+    +alert-error(5000)
+    .container
+        .card.mb-3.shadow-sm
+            h4.card-header.text-info.bg-light Thêm mới tài khoản
+            .card-body
+                form(
+                    action=`${prefixAdmin}/accounts/create`,
+                    method="POST",
+                    enctype="multipart/form-data"
+                )
+                    .row
+                        .col-12
+                            .form-group.mb-3
+                                label(for="fullName" class="form-label") Tên tài khoản
+                                input.form-control(type="text" name="fullName" id="fullName" placeholder="Nhập tên tài khoản..." required)
+                            .form-group.mb-3
+                                label(for="email" class="form-label") Email
+                                input.form-control(type="email" name="email" id="email" placeholder="Nhập email..." required)
+                            .form-group.mb-3
+                                label(for="email" class="form-label") Số điện thoại
+                                input.form-control(type="phone" name="phone" id="phone" placeholder="Nhập số điện thoại..." required)
+
+                            .form-group.mb-3
+                                label(for="password" class="form-label") Mật khẩu
+                                input.form-control(type="password" name="password" id="password" placeholder="Nhập mật khẩu..." required)
+                            .form-group.mb-3
+                                label(for="role_id" class="form-label") Nhóm quyền
+                                select.form-control(name="role_id" id="role_id" required)
+                                    option(value="") Chọn nhóm quyền
+                                    each role in roles || []
+                                        option(value=role._id)= role.title
+                            .form-group(
+                                upload-img
+                            )
+                                label(for="avatar") Hình ảnh
+                                input(
+                                    type="file"
+                                    name="avatar"
+                                    id="avatar"
+                                    class="form-control-file"
+                                    value=""
+                                    accept="image/*"
+                                    input-img
+                                )
+                                .image-preview-container(style="position: relative; max-width: 200px; width: 200px; display: none;  margin-top: 10px;")
+                                    img(
+                                        style="width: 100%; height: 100%; object-fit: cover;"
+                                        src=""
+                                        preview-img
+                                    )
+                                    span(
+                                        close-img
+                                        class="btn btn-close-preview-img"
+                                        style="display: none; position: absolute; top: 10px; right: 10px; cursor: pointer; background: white; padding: 2px; border-radius: 50%;"
+                                    ) X
+                            .form-group.mb-3
+                                label(for="status" class="form-label") Trạng thái
+                                select.form-control(name="status" id="status" required)
+                                    option(value="1") Kích hoạt
+                                    option(value="0") Khóa
+                            .form-group.d-flex.justify-content-end.mt-4
+                                button.btn.btn-primary(type="submit") Lưu
+                                a.btn.btn-secondary.ms-2(href=`${prefixAdmin}/accounts`) Quay lại

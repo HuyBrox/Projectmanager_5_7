@@ -4,7 +4,9 @@ module.exports.createPost = (req, res, next) => {
         res.redirect('back');
         return;
     }
-
+    if (req.body.thumbnail === undefined || req.body.thumbnail === '') {
+        req.body.thumbnail = 'https://th.bing.com/th/id/OIP.r4eciF-FM2-3WdhvxTmGEgAAAA?rs=1&pid=ImgDetMain';
+    }
     next();
 }
 // [PATCH] edit/:id
@@ -14,10 +16,6 @@ module.exports.editPatch = (req, res, next) => {
         res.redirect('back');
         return;
     }
-    if (req.file) {
-        req.body.thumbnail = `/uploads/${req.file.filename}`;
-    } else {
-        req.body.thumbnail = 'https://img4.thuthuatphanmem.vn/uploads/2020/05/07/hinh-anh-cute-dep-nhat_093404024.jpg'; // Đặt giá trị mặc định nếu không có file
-    }
+
     next();
-}
+};

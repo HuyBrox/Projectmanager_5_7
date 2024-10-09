@@ -1,0 +1,28 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/err403.pug
+block main
+    if(role.permissions.includes('role_create'))
+        +alert-error(5000)
+        +alert-success(5000)
+
+        .container
+            .row.justify-content-center
+                .col-lg-12.col-md-10
+                    .card.shadow-sm
+                        h4.card-header.text-info.bg-light Tạo nhóm quyền mới
+                        .card-body
+                            form(action=`${prefixAdmin}/roles/create` method="POST")
+                                .mb-3
+                                    label(for="title") Tiêu đề
+                                    input#title.form-control(type="text" name="title" placeholder="Nhập tiêu đề..." required)
+
+                                .mb-3
+                                    label(for="description") Mô tả
+                                    textarea#description.form-control(name="description" placeholder="Nhập mô tả..." rows="4")
+
+                                .text-center
+                                    button.btn.btn-primary(type="submit") Tạo nhóm quyền
+                                    a.btn.btn-secondary.ms-2(href=`${prefixAdmin}/roles`) Hủy bỏ
+    else
+        +error403('Bạn không được phép truy cập trang này', 'javascript:history.back()')

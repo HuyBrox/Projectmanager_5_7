@@ -1,4 +1,218 @@
+//- include ../../mixins/productCard
+//- include ../../mixins/sub-menu
+//- head
+//-     meta(charset='UTF-8')
+//-     link(rel='icon' type='image/png' href='img/logoo.png')
+//-     meta(name='viewport' content='width=device-width, initial-scale=1.0')
+//-     title Trang ch&#x1EE7; shop th&#x1EDD;i trang
+//-     link(rel='stylesheet' href='/Css/style.css')
+//-     link(rel='stylesheet' href='/Css/responsive.css')
+//-     //- Phần link icon
+//-     script(type='module' src='https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js')
+//-     script(nomodule='' src='https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js')
+//-     //- phần link swiper
+//-     link(rel='stylesheet' href='https://unpkg.com/swiper/swiper-bundle.min.css')
+//- //- Phần header
+//- .header
+//-     .container
+
+//-         .content_container
+//-             .content_header
+//-                 //- Phần logo
+//-                 a.logo(href='index.html')
+//-                     .animation
+//-                         svg(width='96px' height='96px' viewbox='0 0 96 96')
+//-                             g#Styleguide(stroke='none' stroke-width='1' fill='none' fill-rule='evenodd' stroke-linecap='round' stroke-linejoin='round')
+//-                                 g#logo.logo(stroke-width='6')
+//-                                     g#Group-2(transform='translate(12.000000, 19.000000)')
+//-                                         polyline#Path-2.step1(stroke='#62594B' points='72 28.9999996 0 58 26.187197 0 40.5401049 29.7790597')
+//-                                         path#Line.step2(d='M49,48 L54.0725827,58.1451654' stroke='#57EDD4')
+//-                     //- Phần nav
+//-                     nav.nav
+//-                         ul.navbar
+//-                             li.navbar_list.active
+//-                                 a.navbar_list_item.active.home Trang ch&#x1EE7;
+//-                             li.navbar_list
+//-                                 a.navbar_list_item SALE UPTO 70%
+//-                             li.navbar_list
+//-                                 a.navbar_list_item &Dstrok;&#x1ED2;NG GI&Aacute; 99K
+//-                             li.navbar_list.nav-menu
+//-                                 a.navbar_list_item S&#x1EA3;n ph&#x1EA9;m
+//-                                 +sub-menu(productCategory, '/product')
+//-                             li.navbar_list
+//-                                 a.navbar_list_item B&#x1ED9; s&#x1B0;u t&#x1EAD;p
+//-                             li.navbar_list
+//-                                 a.navbar_list_item h&#x1EC7; th&ocirc;ng c&#x1EED;a h&agrave;ng
+//-                     //- Phần responsive
+//-                     .menu
+//-                         ion-icon(name='grid-outline')
+//-                     nav.nav_responsive
+//-                         .close_nav
+//-                             ion-icon(name='close-outline')
+//-                         ul.navbar_res
+//-                             .user_res
+//-                                 img(src='https://cdn.pixabay.com/photo/2014/03/25/16/32/user-297330_1280.png' alt='')
+//-                                 a.Notification_user(href='')
+//-                                     | &Dstrok;&abreve;ng nh&#x1EAD;p
+//-                                     br
+//-                                     |                     Nh&#x1EAD;n nhi&#x1EC1;u &#x1B0;u &dstrok;&atilde;i
+//-                                 .result_user
+//-                             li.navbar_list
+//-                                 a.navbar_list_item.active(href='index.html') Trang ch&#x1EE7;
+//-                             li.navbar_list
+//-                                 a.navbar_list_item SALE UPTO 70%
+//-                             li.navbar_list
+//-                                 a.navbar_list_item &Dstrok;&#x1ED2;NG GI&Aacute; 99K
+//-                             li.navbar_list
+//-                                 a.navbar_list_item(href='') S&#x1EA3;n ph&#x1EA9;m
+//-                             li.navbar_list
+//-                                 a.navbar_list_item B&#x1ED9; s&#x1B0;u t&#x1EAD;p
+//-                             li.navbar_list
+//-                                 a.navbar_list_item h&#x1EC7; th&ocirc;ng c&#x1EED;a h&agrave;ng
+//-                     //- Phần Utilities
+//-                     .utilities
+//-                         .search_nav
+//-                             ion-icon(name='search-outline')
+//-                             span.hover t&igrave;m ki&#x1EBF;m
+//-                         .login_nav
+//-                             ion-icon(name='person-outline')
+//-                             span.hover &Dstrok;&abreve;ng nh&#x1EAD;p
+//-                         .heart_nav
+//-                             ion-icon(name='heart-outline')
+//-                             span.cout_heart 0
+//-                             span.hover y&ecirc;u th&iacute;ch
+//-                         .cart_nav
+//-                             ion-icon(name='cart-outline')
+//-                             span.cout_cart 0
+//-                             span.hover gi&#x1ECF; h&agrave;ng
+//- //- End phần header
+//- //- Phần main
+//- main.main
+//-     //- Phần carsousel lớn
+//-     .carousel_big
+//-         .carousel-slides_big
+//-             .slide_big
+//-                 img(src='https://file.hstatic.net/200000584505/file/web_pc_e7f7530c2de54b668f77dd5ec32fa316.jpg' alt='Slide 1')
+//-             .slide_big
+//-                 img(src='https://file.hstatic.net/200000584505/file/banner-pc.jpg' alt='Slide 1')
+//-             .slide_big
+//-                 img(src='https://file.hstatic.net/200000584505/file/web-pc-trang-chu.jpg' alt='Slide 2')
+//-             .slide_big
+//-                 img(src='https://file.hstatic.net/200000584505/file/web-pc__1_.jpg' alt='Slide 3')
+//-         button.prev_big &#x276E;
+//-         button.next_big &#x276F;
+//-     //- End carsousel lớn
+//-     .container
+//-         .content_container
+//-             //- Phần content_season_sale
+//-             section#season_sale.season_sale
+//-                 .content_season_sale
+//-                     .title_season_sale
+//-                         h2 END OF SEASON SALE
+//-                         i.horizal III
+//-                         p
+//-                             i SALE UP TO 70%
+//-                     .container_product_sale
+//-                         .swiper-container.slider1
+//-                             .swiper-wrapper
+//-                                 each item in [1,2,3,4,5,6,7,8,9,10]
+//-                                     .swiper-slide
+//-                                         +productCard('https://product.hstatic.net/200000584505/product/1050400421867_1_616ab879e2894db08e17b88256893261_grande.jpg', 'xanh', '99.000','72%', '359.000', 'xanh', 'xanh', 'https://product.hstatic.net/200000584505/product/1050400421867_2_d25e49193b14436b99330f40f7a49c6a_grande.jpg', 'https://product.hstatic.net/200000584505/product/1050400421867_3_2405c363c19b48af8ecef6264b53b4c0_master.jpg', 'https://product.hstatic.net/200000584505/product/1050400421867_4_8ee317c9e1854f07a6655e43125e6517_master.jpg')
+//-                             //- Add Pagination
+//-                         .swiper-pagination.slider1-pagination
+//-                         //- Add Navigation
+//-                         .swiper-button-next.slider1-next
+//-                         .swiper-button-prev.slider1-prev
+//-             //- End phần content_season_sale
+//-             //- section top trending
+//-             section.top-trending(style='margin-top: 40px;')
+//-                 .content_top_trending
+//-                     .title_season_sale
+//-                         h2(style='color: #000;') S&#x1EA2;N PH&#x1EA8;M M&#x1EDA;I
+//-                         i.horizall(style='color: #000;') III
+//-                         p(style='color: #000;')
+//-                             i Top trending tu&#x1EA7;n n&agrave;y
+//-                     .container_product_sale
+//-                         .swiper-container.slider2
+//-                             .swiper-wrapper
+//-                                 each item in [1,2,3,4,5,6,7,8,9,10]
+//-                                     .swiper-slide
+//-                                         +productCard('https://product.hstatic.net/200000584505/product/1050400421867_1_616ab879e2894db08e17b88256893261_grande.jpg', 'xanh', '99.000','72%', '359.000', 'xanh', 'xanh', 'https://product.hstatic.net/200000584505/product/1050400421867_2_d25e49193b14436b99330f40f7a49c6a_grande.jpg', 'https://product.hstatic.net/200000584505/product/1050400421867_3_2405c363c19b48af8ecef6264b53b4c0_master.jpg', 'https://product.hstatic.net/200000584505/product/1050400421867_4_8ee317c9e1854f07a6655e43125e6517_master.jpg')
+
+//-                         //- Add Pagination
+//-                         .swiper-pagination.slider2-pagination
+//-                         //- Add Navigation
+//-                         .swiper-button-next.slider2-next
+//-                         .swiper-button-prev.slider2-prev
+//- //- End phần main
+//- //- Phần search
+//- .overlay_search
+//-     .search
+//-         .background_search
+//-             span T&igrave;m ki&#x1EBF;m
+//-             .input
+//-                 input.input_search(type='text' placeholder='Tìm kiếm sản phẩm')
+//-                 .search_icon_a
+//-                     ion-icon(name='search-outline')
+//-                 .iconz(title='Clear search')
+//-                     ion-icon(name='close-outline')
+//-             .result_search
+//- //- Phần show giỏ hàng
+//- .show_cart
+//-     .overlay
+//-         .content_show_cart
+//-             .content_show_cart_mini
+//-                 .off_cart
+//-                     ion-icon(name='close-outline')
+//-                 .icon_show_cart
+//-                     .text_show_cart
+//-                         | Gi&#x1ECF; h&agrave;ng
+//-                 //- từ đây sẽ truy xuất ra bên trong giỏ hàng
+//-                 .cart_container
+//-                 .total
+//-                     .total_min
+//-                         span T&#x1ED5;ng:
+//-                         .price
+//-                             | 0
+//-                             u &dstrok;
+//-                     .pay
+//-                         button.view_cart Xem gi&#x1ECF; h&agrave;ng
+//-                         button.pay_cart thanh to&aacute;n
+//- //- End show giỏ hàng
+//- script(type='module' src='/script/js.js')
+//- script(src='cart.js')
+//- script(src='https://unpkg.com/swiper/swiper-bundle.min.js')
 extends ../../layout/default.pug
-//- th pug này phải viết cho đúng chứ k là lỗi ngay
+include ../../mixins/productCard.pug
 block main
-    h1 Trang chủ
+    //- Carousel lớn
+    .carousel_big
+        .carousel-slides_big
+            .slide_big
+                img(src='https://file.hstatic.net/200000584505/file/web_pc_e7f7530c2de54b668f77dd5ec32fa316.jpg' alt='Slide 1')
+            .slide_big
+                img(src='https://file.hstatic.net/200000584505/file/banner-pc.jpg' alt='Slide 1')
+            .slide_big
+                img(src='https://file.hstatic.net/200000584505/file/web-pc-trang-chu.jpg' alt='Slide 2')
+            .slide_big
+                img(src='https://file.hstatic.net/200000584505/file/web-pc__1_.jpg' alt='Slide 3')
+        button.prev_big &#x276E;
+        button.next_big &#x276F;
+    .container
+        .content_container
+            section#season_sale.season_sale
+                .content_season_sale
+                    .title_season_sale
+                        h2 END OF SEASON SALE
+                        i.horizal III
+                        p
+                            i SALE UP TO 70%
+                    .container_product_sale
+                        .swiper-container.slider1
+                            .swiper-wrapper
+                                each item in [1,2,3,4,5,6,7,8,9,10]
+                                    .swiper-slide
+                                        +productCard('https://product.hstatic.net/200000584505/product/1050400421867_1_616ab879e2894db08e17b88256893261_grande.jpg', 'https://images.pexels.com/photos/1536619/pexels-photo-1536619.jpeg?auto=compress&cs=tinysrgb&w=600', 'Áo thun','100000', '20%', '130000', '', 'https://product.hstatic.net/200000584505/product/1050400421867_2_d25e49193b14436b99330f40f7a49c6a_grande.jpg', 'https://product.hstatic.net/200000584505/product/1050400421867_3_2405c363c19b48af8ecef6264b53b4c0_master.jpg', 'https://product.hstatic.net/200000584505/product/1050400421867_4_8ee317c9e1854f07a6655e43125e6517_master.jpg')
+                        .swiper-pagination.slider1-pagination
+                        .swiper-button-next.slider1-next
+                        .swiper-button-prev.slider1-prev

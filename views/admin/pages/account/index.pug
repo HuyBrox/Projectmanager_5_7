@@ -1,0 +1,55 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+
+block main
+    +alert-success(5000)
+    +alert-error(5000)
+    .container
+        .card.mb-3.shadow-sm
+            h4.card-header.text-info.bg-light Tác vụ
+            .card-body
+                .row
+                    .col-lg-6.col-md-12.mb-3.pt-2
+                        //- Nội dung bên trái (nếu có)
+
+                    .col-lg-6.col-md-12.mb-3.d-flex.justify-content-end
+                        a.btn.btn-outline-success(
+                            href=`${prefixAdmin}/accounts/create`
+                        )
+                            i.fa.fa-plus-circle
+                            |  + Thêm mới
+
+        .card.mb-3.shadow-sm
+            h4.card-header.text-info.bg-light Danh sách tài khoản
+            .card-body
+                table.table.table-bordered.table-hover
+                    thead
+                        tr.text-center
+                            th STT
+                            th Hình ảnh
+                            th Tên tài khoản
+                            th Email
+                            th.text-center Tác vụ
+                    tbody
+                        each account, index in accounts || []
+                            tr
+                                td= index + 1
+                                td.text-center
+                                    img(
+                                        src=`${account.avatar}`,
+                                        alt=account.fullName,
+                                        style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%;"
+                                    )
+                                td= account.fullName
+                                td= account.email
+                                td.text-center
+                                    a.btn.btn-outline-info.mr-2(
+                                        href=`${prefixAdmin}/accounts/edit/${account._id}`
+                                    )
+                                        i.fa.fa-edit
+                                        |  Sửa
+                                    a.btn.btn-outline-danger(
+                                        href=`${prefixAdmin}/accounts/delete/${account._id}`
+                                    )
+                                        i.fa.fa-trash
+                                        |  Xóa

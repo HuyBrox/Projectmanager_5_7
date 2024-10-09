@@ -1,16 +1,73 @@
-header.header
+include ../mixins/sub-menu.pug
+include ../mixins/productCard.pug
+.header
     .container
-        .row.align-item-center
-            .col-3
-                .inner-logo
-                    a(href="/")
-                        img(src="/images/logo.jpg" alt="Logo" width="150" height="100")
-            .col-9
-                .inner-menu
-                    ul
-                        li
-                            a(href="/") Trang chủ
-                        li
-                            a(href="/product") Sản phẩm
-
-
+        .content_container
+            .content_header
+                //- Logo
+                a.logo(href='index.html')
+                    .animation
+                        svg(width='96px' height='96px' viewbox='0 0 96 96')
+                            g#Styleguide(stroke='none' stroke-width='1' fill='none' fill-rule='evenodd' stroke-linecap='round' stroke-linejoin='round')
+                                g#logo.logo(stroke-width='6')
+                                    g#Group-2(transform='translate(12.000000, 19.000000)')
+                                        polyline#Path-2.step1(stroke='#62594B' points='72 28.9999996 0 58 26.187197 0 40.5401049 29.7790597')
+                                        path#Line.step2(d='M49,48 L54.0725827,58.1451654' stroke='#57EDD4')
+                //- Navigation
+                nav.nav
+                    ul.navbar
+                        li.navbar_list.active
+                            a.navbar_list_item.active.home Trang chủ
+                        li.navbar_list
+                            a.navbar_list_item SALE UPTO 70%
+                        li.navbar_list
+                            a.navbar_list_item ĐỒNG GIÁ 99K
+                        li.navbar_list.nav-menu
+                            a.navbar_list_item Sản phẩm
+                            +sub-menu(productCategory, '/product')
+                        li.navbar_list
+                            a.navbar_list_item Bộ sưu tập
+                        li.navbar_list
+                            a.navbar_list_item Hệ thống cửa hàng
+                //- Responsive
+                .menu
+                    ion-icon(name='grid-outline')
+                nav.nav_responsive
+                    .close_nav
+                        ion-icon(name='close-outline')
+                    ul.navbar_res
+                        .user_res
+                            img(src='https://cdn.pixabay.com/photo/2014/03/25/16/32/user-297330_1280.png' alt='')
+                            a.Notification_user(href='')
+                                | Đăng nhập
+                                br
+                                | Nhận nhiều ưu đãi
+                            .result_user
+                        li.navbar_list
+                            a.navbar_list_item.active(href='index.html') Trang chủ
+                        li.navbar_list
+                            a.navbar_list_item SALE UPTO 70%
+                        li.navbar_list
+                            a.navbar_list_item ĐỒNG GIÁ 99K
+                        li.navbar_list
+                            a.navbar_list_item(href='') Sản phẩm
+                        li.navbar_list
+                            a.navbar_list_item Bộ sưu tập
+                        li.navbar_list
+                            a.navbar_list_item Hệ thống cửa hàng
+                //- Utilities
+                .utilities
+                    .search_nav
+                        ion-icon(name='search-outline')
+                        span.hover Tìm kiếm
+                    .login_nav
+                        ion-icon(name='person-outline')
+                        span.hover Đăng nhập
+                    .heart_nav
+                        ion-icon(name='heart-outline')
+                        span.cout_heart 0
+                        span.hover Yêu thích
+                    .cart_nav
+                        ion-icon(name='cart-outline')
+                        span.cout_cart 0
+                        span.hover Giỏ hàng

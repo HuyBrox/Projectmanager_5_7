@@ -1,0 +1,38 @@
+mixin productCard(image1, image2, name, price, sale, originalPrice, colors)
+    .background_product
+        .images_product
+            img.hover_img(src=image1, alt=name , data-src=image1)
+            img(src=image2, alt=name, data-src=image2)
+            .sale
+                span #{sale}
+            .heart_sale
+                span.hover_sale Y&ecirc;u th&iacute;ch
+                ion-icon(name='heart-outline')
+            .add
+                .add_responsive.add_to_cart
+                    img(src='//theme.hstatic.net/200000584505/1001255492/14/add-to-cart.svg?v=247' alt='')
+            .btn_product
+                button.add_to_cart
+                    | th&ecirc;m
+                    span.one
+                    span.two
+                button.quick_view
+                    | xem nhanh
+                    span.one
+                    span.two
+        .name_product
+            p.name
+                | #{name}
+        .price_product
+            span.price
+                | #{price}
+                u &dstrok;
+            span.dell
+                del
+                    | #{originalPrice}
+                    u &dstrok;
+        .color_product
+            each color in colors
+                span
+                    img(src=color.src, alt=color.alt, data-color=color.color, data-src=color.src, data-type=color.type, data-ax=color.ax, data-az=color.az)
+

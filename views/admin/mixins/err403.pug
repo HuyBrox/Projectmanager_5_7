@@ -1,0 +1,17 @@
+//- mixin.pug
+mixin error403(message, returnLink)
+    doctype html
+    html(lang="vi")
+        head
+            meta(charset="UTF-8")
+            meta(name="viewport" content="width=device-width, initial-scale=1.0")
+            title 403 - Không được phép truy cập
+            link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
+        body
+            .container.h-100.d-flex.justify-content-center.align-items-center
+                .text-center
+                    h1.display-4 403
+                    h2= message
+                    p.lead Có vẻ như bạn không có quyền truy cập vào trang này.
+                    a.btn.btn-primary.mt-4(href="/") Trở về trang chủ
+                    a.btn.btn-secondary.mt-4.ml-2(href=returnLink) Quay lại trang trước

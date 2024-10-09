@@ -1,9 +1,16 @@
 doctype html
 html
     head
+        meta(charset='UTF-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1.0')
         title #{pagesTitle}
-        link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css")
-        link(rel="stylesheet" href="css/style.css")
+        link(rel='icon' type='image/png' href='img/logoo.png')
+        link(rel='stylesheet' href='/Css/style.css')
+        link(rel='stylesheet' href='/Css/responsive.css')
+        link(rel='stylesheet' href='https://unpkg.com/swiper/swiper-bundle.min.css')
+        link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
+        script(type='module' src='https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js')
+        script(nomodule='' src='https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js')
     body
         include ../partials/header.pug
 
@@ -11,7 +18,6 @@ html
 
         include ../partials/footer.pug
 
-        script(src="/js/script.js")
-        script(src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js")
-        script(src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js")
-
+        script(type='module' src='/script/js.js')
+        script(src='cart.js')
+        script(src='https://unpkg.com/swiper/swiper-bundle.min.js')

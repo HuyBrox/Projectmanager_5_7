@@ -1,0 +1,75 @@
+extends ../../layouts/default.pug
+include ../../mixins/alert.pug
+include ../../mixins/select-tree.pug
+include ../../mixins/err403.pug
+
+block main
+    if(role.permissions.includes('product-category_edit'))
+        +alert-error(5000)
+        +alert-success(5000)
+
+        h1 Sửa danh mục sản phẩm
+        form(
+            action=`${prefixAdmin}/category-product/edit/${record._id}?_method=PATCH`
+            method="POST"
+            id="form-edit-product"
+            enctype="multipart/form-data"
+        )
+            .form-group
+                label(for="title") Tiêu đề danh mục
+                input#title.form-control(type="text" name="title" placeholder="Nhập tiêu đề" required value=record.title)
+            select(
+                name="parent_id"
+                id="parent_id"
+                class="form-control"
+            )
+                option(
+                    value=``
+                ) -- Chọn danh mục cha --
+                if(newCategories)
+                    +select-tree(newCategories, 1 , record.parent_id)
+
+
+            .form-group(
+                upload-img
+            )
+                label(for="thumbnail") Hình ảnh
+                input(
+                    type="file"
+                    name="thumbnail"
+                    id="thumbnail"
+                    class="form-control-file"
+                    value=""
+                    accept="image/*"
+                    input-img
+                )
+                .image-preview-container(style="position: relative; max-width: 200px; width: 200px; display: block;  margin-top: 10px;")
+                    img(
+                        style="width: 100%; height: 100%; object-fit: cover;"
+                        src=`${record.thumbnail}`
+                        preview-img
+                    )
+                    span(
+                        close-img
+                        class="btn btn-close-preview-img"
+                        style="display: block; position: absolute; top: 10px; right: 10px; cursor: pointer; background: white; padding: 2px; border-radius: 50%;"
+                    ) X
+
+            .form-group
+                label(for="description") Mô tả
+                textarea#description.form-control(name="description" rows="3" placeholder="Nhập mô tả" class= "tinymce") !{record.description}
+
+            .form-group
+                label(for="position") Vị trí
+                input#position.form-control(type="number" name="position" placeholder="Nhập vị trí" required value=record.position)
+
+            .form-group
+                label(for="status") Trạng thái
+                select#status.form-control(name="status" required)
+                    option(value="active" selected=record.status == 'active') Hoạt động
+                    option(value="inactive" selected=record.status == 'inactive') Không hoạt động
+            .btn-group
+                button.btn.btn-primary(type="submit") Lưu
+                a.btn.btn-danger(href=`${prefixAdmin}/category-product`) Hủy
+    else
+        +error403('Bạn không được phép truy cập trang này', 'javascript:history.back()')
